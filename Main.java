@@ -42,15 +42,28 @@ public class Main {
             }
         }
 
-        // SUMMARY
-        int totalHp = 0;
+     // SUMMARY
+int totalHp = 0;
+int casterCount = 0;
+int meleeCount = 0;
 
-        for (GameCharacter c : party) {
-            totalHp += c.getHp();
-        }
+for (GameCharacter c : party) {
+    totalHp += c.getHp();
 
-        System.out.println("\n=== PARTY SUMMARY ===");
-        System.out.println("Total members: " + party.size());
-        System.out.println("Total HP: " + totalHp);
+    if (c instanceof CasterAbility) {
+        casterCount++;
+    } else {
+        meleeCount++;
     }
+}
+
+String readiness = totalHp >= 250 ? "READY FOR BATTLE" : "NEEDS REST";
+
+System.out.println("\n=== PARTY SUMMARY ===");
+System.out.println("Total members: " + party.size());
+System.out.println("Total HP: " + totalHp);
+System.out.println("Casters: " + casterCount);
+System.out.println("Melee/Ranged: " + meleeCount);
+System.out.println("Party Status: " + readiness);
+}
 }
