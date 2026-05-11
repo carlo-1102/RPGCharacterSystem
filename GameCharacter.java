@@ -1,3 +1,5 @@
+// GameCharacter.java
+
 /**
  * Base abstract class for all RPG characters.
  */
@@ -9,8 +11,8 @@ public abstract class GameCharacter {
 
     public GameCharacter(String name, int hp, int attackPower) {
         this.name = name;
-        this.hp = hp;
-        this.attackPower = attackPower;
+        this.hp = Math.max(0, hp);
+        this.attackPower = Math.max(0, attackPower);
     }
 
     // Concrete method
@@ -21,11 +23,18 @@ public abstract class GameCharacter {
 
     // Abstract methods
     public abstract void attack();
+
     public abstract String describeClass();
 
-    // Encapsulation
+    // Getters and Setters
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        if (name != null && !name.isEmpty()) {
+            this.name = name;
+        }
     }
 
     public int getHp() {
@@ -33,10 +42,18 @@ public abstract class GameCharacter {
     }
 
     public void setHp(int hp) {
-        this.hp = hp;
+        if (hp >= 0) {
+            this.hp = hp;
+        }
     }
 
     public int getAttackPower() {
         return attackPower;
+    }
+
+    public void setAttackPower(int attackPower) {
+        if (attackPower >= 0) {
+            this.attackPower = attackPower;
+        }
     }
 }
